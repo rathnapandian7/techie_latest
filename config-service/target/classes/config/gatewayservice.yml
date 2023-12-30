@@ -1,0 +1,38 @@
+server:
+  port: 1005
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/
+
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      globalcors:
+      corsConfigurations:
+      '[/**]':
+      allowedOrigins: "*"
+      allowedMethods:
+        - GET,PUT,POST,OPTIONS,DELETE
+      routes:
+        - id: authservice
+          uri: http://localhost:1003
+          predicates:
+            - Path=/rats/**
+          filters:
+            - RewritePath=/api/authservice/(?<segment>.*), /authservice/$\{segment}
+
+
+
+
+management:
+  endpoints:
+    web.exposure.include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

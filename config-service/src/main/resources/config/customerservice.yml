@@ -1,0 +1,13 @@
+server:
+  port: 1004
+
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka/

@@ -1,0 +1,17 @@
+server:
+  port: 1000
+
+spring:
+  profiles:
+    active:  native
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        native:
+          searchLocations: classpath:/config/
+
+management:
+  security:
+    enabled: false
